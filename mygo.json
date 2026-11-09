@@ -1,0 +1,10 @@
+{
+  "name": "Termini",
+  "identifier": "com.bestrui.termini",
+  "version": "0.0.1",
+  "out": "build",
+  "updates": {
+    "publicKey": "cvaVRoUOQCj1ehwGHPdx8dY4oiwGBm5MI7J8AlH9Lb4=",
+    "github": "bestruirui/Termini"
+  }
+}
