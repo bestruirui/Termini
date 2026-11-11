@@ -49,6 +49,11 @@ func Open(preferences *config.Settings, workingDirectory string, settingWindow *
 			win.Invalidate()
 		},
 		OnExit: func(int) { <-ready; win.Close() },
+		OnNotify: func(title, body string) {
+			if err := mygo.NewNotification(mygo.NotificationOptions{Title: title, Body: body}).Show(); err != nil {
+				log.Print(err)
+			}
+		},
 	}, preferences.Shell.Arguments)
 	if err != nil {
 		return err
