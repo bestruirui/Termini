@@ -5,7 +5,6 @@ import (
 
 	"termini/internal/config"
 	"termini/internal/platform/pty"
-	"termini/internal/platform/window"
 
 	"github.com/egoist/mygo"
 	"github.com/egoist/mygo/plugins/terminal"
@@ -97,7 +96,7 @@ func (w *Window) Open(
 			})
 		}),
 	})
-	w.window.OnReadyToShow(func() { window.Show(w.window) })
+	w.window.OnReadyToShow(w.window.Show)
 	off := updater.OnChange(w.window.Invalidate) // 窗口关闭时移除更新偏好的重绘监听。
 	w.window.OnClosed(func() {
 		off()

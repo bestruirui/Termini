@@ -5,7 +5,6 @@ import (
 
 	"termini/internal/config"
 	"termini/internal/platform/pty"
-	"termini/internal/platform/window"
 	"termini/internal/window/settingwindow"
 
 	"github.com/egoist/mygo"
@@ -88,7 +87,7 @@ func Open(preferences *config.Settings, workingDirectory string, settingWindow *
 			})
 		}),
 	})
-	win.OnReadyToShow(func() { window.Show(win) })
+	win.OnReadyToShow(win.Show)
 	close(ready)
 	win.OnClosed(func() {
 		term.Close()
