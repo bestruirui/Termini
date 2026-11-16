@@ -11,7 +11,8 @@ import (
 // Settings 按通用、外观和终端页面组织用户偏好。
 type Settings struct {
 	General struct {
-		ExplorerContextMenu bool `json:"explorer_context_menu"` // 文件管理器右键菜单开关，默认关闭。
+		ExplorerContextMenu      bool `json:"explorer_context_menu"`       // 文件管理器普通右键菜单开关，默认关闭。
+		ExplorerAdminContextMenu bool `json:"explorer_admin_context_menu"` // 文件管理器管理员右键菜单开关，默认关闭。
 	} `json:"general"` // 通用页的右键菜单设置。
 	Appearance struct {
 		Mode       string  `json:"mode"`        // 应用深浅模式：system、light 或 dark。

@@ -14,9 +14,19 @@ func (w *Window) generalPage(c *ui.Context) {
 		group(c, "右键菜单", func() {
 			row(c, "使用 Termini 打开", func() {
 				if ui.Switch(c.Key("explorer-context-menu"), &w.preferences.General.ExplorerContextMenu).Label("使用 Termini 打开").Changed() {
-					if err := explorer.SetContextMenu(w.preferences.General.ExplorerContextMenu); err != nil {
+					if err := explorer.SetContextMenu(w.preferences.General.ExplorerContextMenu, false); err != nil {
 						w.preferences.General.ExplorerContextMenu = !w.preferences.General.ExplorerContextMenu
 						w.Error = "设置右键菜单失败：" + err.Error()
+					} else {
+						w.save()
+					}
+				}
+			})
+			row(c, "使用 Termini 打开 (管理员)", func() {
+				if ui.Switch(c.Key("explorer-admin-context-menu"), &w.preferences.General.ExplorerAdminContextMenu).Label("使用 Termini 打开 (管理员)").Changed() {
+					if err := explorer.SetContextMenu(w.preferences.General.ExplorerAdminContextMenu, true); err != nil {
+						w.preferences.General.ExplorerAdminContextMenu = !w.preferences.General.ExplorerAdminContextMenu
+						w.Error = "设置右键菜单 (管理员) 失败：" + err.Error()
 					} else {
 						w.save()
 					}
