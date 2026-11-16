@@ -39,6 +39,7 @@ func Open(preferences *config.Settings, workingDirectory string, settingWindow *
 		RightClick:      rightClick,
 		Cursor:          cursor,
 		NoBlink:         !preferences.Shell.CursorBlink,
+		NoExitMessage:   true,
 		OnTitle: func(title string) {
 			<-ready
 			if title == "" {

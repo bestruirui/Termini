@@ -50,6 +50,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y nsis
       - name: Build and upload
         env:
+          GOFLAGS: ${{ matrix.name == 'Windows' && '-tags=mygo_nowebview' || '' }}
           GH_TOKEN: ${{ github.token }}
           MYGO_UPDATER_PRIVATE_KEY: ${{ secrets.MYGO_UPDATER_PRIVATE_KEY }}
         run: go tool mygo build -platform "${{ matrix.platform }}" -upload
